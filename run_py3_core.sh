@@ -58,9 +58,8 @@ GOLANG_URL="https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz"
 sudo mkdir -p /usr/local
 wget -q -O - "${GOLANG_URL}" | sudo tar -C /usr/local -xz
 
-
 N_JOBS=$(grep -c ^processor /proc/cpuinfo)
-N_GPUS=$(lspci|grep 'VGA'|grep 'AMD/ATI'|wc -l)
+N_GPUS=$(lspci|grep 'controller'|grep 'AMD/ATI'|wc -l)
 
 echo ""
 echo "Bazel will use ${N_JOBS} concurrent build job(s) and ${N_GPUS} concurrent test job(s)."
