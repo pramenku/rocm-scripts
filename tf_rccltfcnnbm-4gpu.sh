@@ -23,7 +23,7 @@ run_tf_cnn_benchmarks()
         cd $BENCHDIR
 #     MODELS="alexnet"
        export TF_ROCM_FUSION_ENABLE=1
-        MODELS="alexnet googlenet inception3 inception4 lenet overfeat resnet50 resnet152_v2 trivial vgg11 vgg16 vgg19 resnet101 resnet50_v1.5"
+        MODELS="alexnet googlenet inception3 inception4 lenet overfeat resnet50 resnet152_v2 trivial vgg11 vgg16 vgg19 resnet101"
 	NGPUS=2
 	ITERATIONS=50
 	BATCH_SIZE="1 2 4 8 16 32 64"
@@ -46,7 +46,7 @@ run_tf_cnn_benchmarks_128()
     echo "=======================tf_cnn_benchmarks_BS128==============="
         cd $BENCHDIR
     export TF_ROCM_FUSION_ENABLE=1
-    MODELS="alexnet googlenet inception3 lenet overfeat resnet50 trivial vgg11 vgg16 vgg19 resnet50_v1.5"
+    MODELS="alexnet googlenet inception3 lenet overfeat resnet50 trivial vgg11 vgg16 vgg19"
         NGPUS=2
         ITERATIONS=50
         BATCH_SIZE=128
@@ -93,7 +93,7 @@ run_tf_cnn_benchmarks_512()
     echo "=======================tf_cnn_benchmarks_BS512==============="
         cd $BENCHDIR
     export TF_ROCM_FUSION_ENABLE=1
-    MODELS="alexnet resnet50_v1.5"
+    MODELS="alexnet"
         NGPUS=2
         ITERATIONS=50
         BATCH_SIZE=512
