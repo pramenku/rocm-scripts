@@ -1,6 +1,5 @@
 #!/bin/bash
 cd /root/pytorch/build
-export LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
 wget  https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/micro_benchmarking_pytorch.py
 wget  https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/fp16util.py 
 wget https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/shufflenet.py 
@@ -9,7 +8,7 @@ wget https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/shuffle
 chmod 775 micro_benchmarking_pytorch.py fp16util.py shufflenet.py shufflenet_v2.py 
 
 pip install torchvision==0.2.2.post3
-
+##################for Single GPU ################
 echo "========================= pytorch resnet50 256====================="
 python micro_benchmarking_pytorch.py --network resnet50 --batch-size 256 --iterations 10
 echo "========================= pytorch resnet101 128====================="
