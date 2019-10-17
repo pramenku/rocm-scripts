@@ -6,7 +6,7 @@
 
 cwd=`pwd`
 BASEDIR=/root
-
+LOGDIR=/dockerx
 
 mkdir -p /dockerx/tf-rccllogs
 
@@ -110,10 +110,32 @@ run_tf_cnn_benchmarks_512()
     done
 } 
 
+run_tf_cnn_benchmarks_1024()
+{
+    echo "=======================tf_cnn_benchmarks_BS1024==============="
+        cd $BENCHDIR
+    export TF_ROCM_FUSION_ENABLE=1
+    MODELS="alexnet"
+        NGPUS=2
+        ITERATIONS=50
+        BATCH_SIZE=1024
+
+        for j in ${BATCH_SIZE[@]}
+        do
+        for i in ${MODELS[@]}
+        do
+    /usr/bin/python3 ./scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py --model=$i \
+    --print_training_accuracy=True \
+    --num_batches=${ITERATIONS} --all_reduce_spec=nccl --variable_update=replicated \
+    --num_gpus=${NGPUS} --batch_size=$j  2>&1 | tee $LOGDIR/tfrccl-$i-$j.txt
+    done
+    done
+} 
+
 
 run_tf_cnn_benchmarks
 run_tf_cnn_benchmarks_128
 run_tf_cnn_benchmarks_256
 run_tf_cnn_benchmarks_512
-
+run_tf_cnn_benchmarks_1024
 
