@@ -2,10 +2,10 @@ current=`pwd`
 LOGDIR=$current
 export PYTORCH_TEST_WITH_ROCM=1 
 
-echo "========================= py-autograd====================="
-python /root/pytorch/test/test_autograd.py -v 2>&1 | tee $LOGDIR/py-autograd.log
 echo "========================= py-cuda====================="
 python /root/pytorch/test/test_cuda.py -v 2>&1 | tee $LOGDIR/py-cuda.log	
+echo "========================= py-autograd====================="
+python /root/pytorch/test/test_autograd.py -v 2>&1 | tee $LOGDIR/py-autograd.log
 echo "========================= py-dataloader ====================="
 python /root/pytorch/test/test_dataloader.py	-v 2>&1 | tee $LOGDIR/py-dataloader.log
 echo "========================= py-distributions====================="
