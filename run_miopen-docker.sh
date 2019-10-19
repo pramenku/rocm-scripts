@@ -3,6 +3,10 @@ current=`pwd`
 dir=/root/driver
 logs=/dockerx
 
+apt-get -y update && apt-get install -y unzip wget
+wget https://phoenixnap.dl.sourceforge.net/project/half/half/1.12.0/half-1.12.0.zip
+unzip *.zip
+cp -rf $current/include/half.hpp /opt/rocm/include
 
 cd $dir/MLOpen/build_ocl
 make clean
