@@ -26,8 +26,6 @@ echo "========================= py-utils====================="
 python /root/pytorch/test/test_utils.py -v 2>&1 | tee $LOGDIR/py-utils.log
 echo "========================= py-test_cuda_primary_ctx====================="
 python /root/pytorch/test/test_cuda_primary_ctx.py -v 2>&1 | tee $LOGDIR/test_cuda_primary_ctx.log
-echo "========================py-test_indexing_cuda====================="
-python /root/pytorch/test/test_indexing_cuda.py -v 2>&1 | tee $LOGDIR/test_indexing_cuda.log	
 echo "========================= py-test_numba_integration ====================="
 python /root/pytorch/test/test_numba_integration.py	-v 2>&1 | tee $LOGDIR/py-test_numba_integration.log
 echo "========================= py-test_type_info====================="
@@ -38,8 +36,6 @@ echo "========================= py-test_expecttest====================="
 python /root/pytorch/test/test_expecttest.py -v 2>&1 | tee $LOGDIR/py-test_expecttest.log	
 echo "========================= py-test_docs_coverage====================="
 python /root/pytorch/test/test_docs_coverage.py -v 2>&1 | tee $LOGDIR/py-test_docs_coverage.log	
-echo "========================= py-dist_autograd====================="
-python /root/pytorch/test/test_dist_autograd.py -v 2>&1 | tee $LOGDIR/py-dist_autograd.log	
 echo "========================= py-fake_quant====================="
 python /root/pytorch/test/test_fake_quant.py -v 2>&1 | tee $LOGDIR/py-fake_quant.log	
 echo "========================= py-logging====================="
