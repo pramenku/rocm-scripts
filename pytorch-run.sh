@@ -1,7 +1,8 @@
 current=`pwd`
 LOGDIR=$current
 export PYTORCH_TEST_WITH_ROCM=1 
-alias python='/usr/bin/python3.6'
+
+update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
 
 echo "========================= py-autograd====================="
 python /root/pytorch/test/test_autograd.py -v 2>&1 | tee $LOGDIR/py-autograd.log
