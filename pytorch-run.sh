@@ -1,6 +1,8 @@
 current=`pwd`
 LOGDIR=$current
 export PYTORCH_TEST_WITH_ROCM=1 
+alias python='/usr/bin/python3.6'
+
 echo "========================= py-autograd====================="
 python /root/pytorch/test/test_autograd.py -v 2>&1 | tee $LOGDIR/py-autograd.log
 echo "========================= py-cuda====================="
