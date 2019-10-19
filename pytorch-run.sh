@@ -54,8 +54,6 @@ echo "========================= py-quantized_nn_mods===================="
 python /root/pytorch/test/test_quantized_nn_mods.py -v 2>&1 | tee $LOGDIR/py-quantized_nn_mods.log	
 echo "========================= py-quantizer===================="
 python /root/pytorch/test/test_quantizer.py -v 2>&1 | tee $LOGDIR/py-quantizer.log	
-echo "========================= py-rpc===================="
-python /root/pytorch/test/test_rpc.py -v 2>&1 | tee $LOGDIR/py-rpc.log	
 echo "========================= py-namedtuple_return_api===================="
 python /root/pytorch/test/test_namedtuple_return_api.py -v 2>&1 | tee $LOGDIR/py-namedtuple_return_api.log	
 echo "========================= py-jit_fuser===================="
