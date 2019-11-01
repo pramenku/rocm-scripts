@@ -9,8 +9,7 @@ chmod 775 micro_benchmarking_pytorch.py fp16util.py shufflenet.py shufflenet_v2.
 
 pip install torchvision==0.2.2.post3
 ##################for Single GPU ################
-echo "========================= pytorch resnet50 256====================="
-python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 256 --iterations 10
+
 echo "========================= pytorch resnet101 128====================="
 python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 128 --iterations 10
 echo "========================= pytorch resnet152 128====================="
@@ -27,9 +26,10 @@ echo "========================= pytorch vgg16 128====================="
 python3.6 micro_benchmarking_pytorch.py --network vgg16 --batch-size 128 --iterations 10 
 echo "========================= pytorch vgg19 128===================="
 python3.6 micro_benchmarking_pytorch.py --network vgg19 --batch-size 128 --iterations 10
+echo "========================= pytorch resnet50 256====================="
+python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 256 --iterations 10
 
-echo "========================= pytorch  resnet50 fp16 256====================="
-python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 256 --iterations 10 --fp16 1
+
 echo "========================= pytorch  resnet101 fp16 128====================="
 python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 128 --iterations 10 --fp16 1
 echo "========================= pytorch  resnet152 fp16 128 ====================="
@@ -46,3 +46,5 @@ echo "========================= pytorch  vgg16 fp16 128====================="
 python3.6 micro_benchmarking_pytorch.py --network vgg16 --batch-size 128 --iterations 10 --fp16 1
 echo "========================= pytorch  vgg19 fp16 128====================="
 python3.6 micro_benchmarking_pytorch.py --network vgg19 --batch-size 128 --iterations 10 --fp16 1
+echo "========================= pytorch  resnet50 fp16 256====================="
+python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 256 --iterations 10 --fp16 1
