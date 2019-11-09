@@ -3,7 +3,7 @@
 # check if caffe2 is  build and installed properly. success => all good; failure => not built and installed properly.
   echo "===============If success, caffe2 installed properly======="
   cd /root/caffe2/build
-  python -c 'from caffe2.python import core' 2>/dev/null && echo "Success" || echo "Failure"
+  python3.6 -c 'from caffe2.python import core' 2>/dev/null && echo "Success" || echo "Failure"
   
   
 echo "=========================start caffe2 benchmark====================="
@@ -16,23 +16,28 @@ dos2unix convnet_benchmarks_dpm.py
 ####################################1-GPU#############################################
 echo "========================= caffe2 Alexnet 1024 model====================="
 python3.6 convnet_benchmarks_dpm.py --model AlexNet  --num_gpus 1 --batch_size 1024 --iterations 10 |& tee -a caffe2-alexnet-1024_1.log
-python3.6 convnet_benchmarks_dpm.py --model AlexNet --num_gpus 1 --batch_size 1024 --iterations 10 --dtype float16
+#echo "========================= caffe2 Alexnet 1024 fp16 model====================="
+#python3.6 convnet_benchmarks_dpm.py --model AlexNet --num_gpus 1 --batch_size 1024 --iterations 10 --dtype float16
 
 echo "========================= caffe2 Inception 128 model====================="
 python3.6 convnet_benchmarks_dpm.py --model Inception  --num_gpus 1 --batch_size 128 --iterations 10 |& tee -a caffe2-Inception-128_1.log
-python3.6 convnet_benchmarks_dpm.py --model Inception --num_gpus 1 --batch_size 128 --iterations 10 --dtype float16
+#echo "========================= caffe2 Inception 128 fp16 model====================="
+#python3.6 convnet_benchmarks_dpm.py --model Inception --num_gpus 1 --batch_size 128 --iterations 10 --dtype float16
 
 echo "========================= caffe2 Resnet50 64 model====================="
 python3.6 convnet_benchmarks_dpm.py --model Resnet50  --num_gpus 1 --batch_size 64 --iterations 10 |& tee -a caffe2-Resnet50-64_1.log
-python3.6 convnet_benchmarks_dpm.py --model Resnet50 --num_gpus 1 --batch_size 64 --iterations 10 --dtype float16
+#echo "========================= caffe2 Resnet50 64 fp16 model====================="
+#python3.6 convnet_benchmarks_dpm.py --model Resnet50 --num_gpus 1 --batch_size 64 --iterations 10 --dtype float16
 
 echo "========================= caffe2 Resnet101 64  model====================="
 python3.6 convnet_benchmarks_dpm.py --model Resnet101  --num_gpus 1 --batch_size 64 --iterations 10 |& tee -a caffe2-Resnet101-64_1.log
-python3.6 convnet_benchmarks_dpm.py --model Resnet101 --num_gpus 1 --batch_size 64 --iterations 10 --dtype float16
+#echo "========================= caffe2 Resnet101 64  fp16 model====================="
+#python3.6 convnet_benchmarks_dpm.py --model Resnet101 --num_gpus 1 --batch_size 64 --iterations 10 --dtype float16
 
 echo "========================= caffe2 Resnext101 64 model====================="
 python3.6 convnet_benchmarks_dpm.py --model Resnext101  --num_gpus 1 --batch_size 64 --iterations 10 |& tee -a caffe2-Resnext101-64_1.log
-python3.6 convnet_benchmarks_dpm.py --model Resnext101 --num_gpus 1 --batch_size 64 --iterations 10 --dtype float16
+#echo "========================= caffe2 Resnext101 64 fp16 model====================="
+#python3.6 convnet_benchmarks_dpm.py --model Resnext101 --num_gpus 1 --batch_size 64 --iterations 10 --dtype float16
 
 
 
