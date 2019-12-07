@@ -62,7 +62,7 @@ run_tf_xla_cnn_bm()
 
 download_tensorflow_benchmarks
 
-run_tf_xla_concat_gpu
+#run_tf_xla_concat_gpu
 run_tf_xla_cnn_bm
 
 
