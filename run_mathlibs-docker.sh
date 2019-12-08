@@ -3,7 +3,7 @@ current=`pwd`
 dir=/home
 logs=/dockerx
 
-export LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
 
 echo "==============================rocrand=============================="
 cd $dir/rocRAND/build
