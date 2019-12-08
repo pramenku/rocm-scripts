@@ -14,6 +14,8 @@ ctest --output-on-failure 2>&1 | tee $logs/rocrand-ut.log
 cd $dir
 echo "==============================rocfft============================="
 ./rocFFT/build/release/clients/staging/rocfft-test 2>&1 | tee $logs/rocfft.log
+echo "==============================rocsolver============================="
+./rocSOLVER/build/clients/staging/rocsolver-test 2>&1 | tee $logs/rocsolver.log
 echo "==============================rocalution============================="
 ./rocALUTION/build/release/clients/staging/rocalution-test 2>&1 | tee $logs/rocalution.log
 echo "=============================hipblas============================="
