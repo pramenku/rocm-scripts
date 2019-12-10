@@ -10,6 +10,8 @@ chmod 775 micro_benchmarking_pytorch.py fp16util.py shufflenet.py shufflenet_v2.
 pip install torchvision==0.2.2.post3
 ##################for Single GPU ################
 
+###############################Below are applicable BS for 32GB Memory GPUs, for 16GB, we need to change the BS######################
+
 echo "========================= pytorch resnet101 128====================="
 python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 128 --iterations 10
 echo "========================= pytorch resnet152 128====================="
