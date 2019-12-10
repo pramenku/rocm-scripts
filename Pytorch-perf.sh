@@ -7,7 +7,12 @@ wget https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/shuffle
 
 chmod 775 micro_benchmarking_pytorch.py fp16util.py shufflenet.py shufflenet_v2.py 
 
-pip install torchvision==0.2.2.post3
+#pip install torchvision==0.2.2.post3
+
+git clone https://github.com/pytorch/vision
+cd vision
+pip install -q --user
+
 ##################for Single GPU ################
 
 ###############################Below are applicable BS for 32GB Memory GPUs, for 16GB, we need to change the BS######################
