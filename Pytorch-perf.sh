@@ -11,7 +11,7 @@ chmod 775 micro_benchmarking_pytorch.py fp16util.py shufflenet.py shufflenet_v2.
 
 git clone https://github.com/pytorch/vision
 cd vision
-pip install -q --user
+pip install --user .
 
 ##################for Single GPU ################
 
