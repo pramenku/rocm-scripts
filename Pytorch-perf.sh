@@ -15,7 +15,7 @@ pip install --user .
 
 ##################for Single GPU ################
 
-###############################Below are applicable BS for 32GB Memory GPUs, for 16GB, we need to change the BS######################
+###############################Below are applicable BS for 32GB Memory GPUs, for 16GB, change BS-of-32GB/2 ######################
 
 echo "========================= pytorch resnet101 128====================="
 python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 128 --iterations 10
