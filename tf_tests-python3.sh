@@ -213,6 +213,7 @@ run_flower_alexnet()
     mkdir -p /dockerx/flower-alexnet
     rm -rf /dockerx/flower-alexnet/*
     wget https://raw.githubusercontent.com/pramenku/rocm-scripts/master/preprocessing_factory.py
+     chmod 775 preprocessing_factory.py
     cp -rf preprocessing_factory.py /root/models/research/slim/preprocessing/
        
         cd $MODELDIR/research/slim
