@@ -10,10 +10,16 @@ echo AH64_uh1 | sudo rm -rf rocblas_*.log
 
 cd $HOME/Desktop/rocm_tests/mathlibs/rocblas/build/release/clients/staging
 
+echo "===== Running rocblas : BF16  =====" 2>&1 | tee $NUMPATH/rocblas_BF16.log
+#To run 4K BF16 TN kernel 100 times (beta must be 0):
+./rocblas-bench --transposeA T -f gemm_ex -r bf16_r --compute_type s --alpha 1 --beta 0 -i 100 -m 4096 -n 4096 -k 4096 --ldd 4128 --ldc 4128 --lda 4128 --ldb 4128
+
+#To run 1K BF16 TN kernel 100 times (beta must be 0):
+./rocblas-bench --transposeA T -f gemm_ex -r bf16_r --compute_type s --alpha 1 --beta 0 -i 100 -m 1024 -n 1024 -k 1024 --ldd 1064 --ldc 1064 --lda 1064 --ldb 1064
+
 #Performance calculation
 
 echo "===== Running rocblas : GEMM - single Precision =====" 2>&1 | tee $NUMPATH/rocblas_GEMM_single.log
-/opt/rocm/bin/rocm-smi --setperflevel high
 ./rocblas-bench -f gemm -r s -m 2047 -n 2047 -k 2047 --lda 2047 --ldb 2047 --ldc 2047 --transposeB T 2>&1 | tee -a $NUMPATH/rocblas_GEMM_single.log
 ./rocblas-bench -f gemm -r s -m 2047 -n 2047 -k 2047 --lda 2047 --ldb 2047 --ldc 2047 --transposeB N 2>&1 | tee -a $NUMPATH/rocblas_GEMM_single.log
 ./rocblas-bench -f gemm -r s -m 2048 -n 2048 -k 2048 --lda 2048 --ldb 2048 --ldc 2048 --transposeB T 2>&1 | tee -a $NUMPATH/rocblas_GEMM_single.log
@@ -41,7 +47,6 @@ echo "===== Running rocblas : GEMM - single Precision =====" 2>&1 | tee $NUMPATH
 
 
 echo "===== Running rocblas : GEMM - Double Precision =====" 2>&1 | tee $NUMPATH/rocblas_GEMM_double.log
-/opt/rocm/bin/rocm-smi --setperflevel high
 ./rocblas-bench -f gemm -r d -m 2047 -n 2047 -k 2047 --lda 2047 --ldb 2047 --ldc 2047 --transposeB T 2>&1 | tee -a $NUMPATH/rocblas_GEMM_double.log
 ./rocblas-bench -f gemm -r d -m 2047 -n 2047 -k 2047 --lda 2047 --ldb 2047 --ldc 2047 --transposeB N 2>&1 | tee -a $NUMPATH/rocblas_GEMM_double.log
 ./rocblas-bench -f gemm -r d -m 2048 -n 2048 -k 2048 --lda 2048 --ldb 2048 --ldc 2048 --transposeB T 2>&1 | tee -a $NUMPATH/rocblas_GEMM_double.log
@@ -69,7 +74,6 @@ echo "===== Running rocblas : GEMM - Double Precision =====" 2>&1 | tee $NUMPATH
 
 
 echo "===== Runninng rocblas : GEMM - Half Precision =====" 2>&1 | tee $NUMPATH/rocblas_GEMM_half.log
-/opt/rocm/bin/rocm-smi --setperflevel high
 ./rocblas-bench -f gemm -r h -m 2047 -n 2047 -k 2047 --lda 2047 --ldb 2047 --ldc 2047 --transposeB T 2>&1 | tee -a $NUMPATH/rocblas_GEMM_half.log
 ./rocblas-bench -f gemm -r h -m 2047 -n 2047 -k 2047 --lda 2047 --ldb 2047 --ldc 2047 --transposeB N 2>&1 | tee -a $NUMPATH/rocblas_GEMM_half.log
 ./rocblas-bench -f gemm -r h -m 2048 -n 2048 -k 2048 --lda 2048 --ldb 2048 --ldc 2048 --transposeB T 2>&1 | tee -a $NUMPATH/rocblas_GEMM_half.log
@@ -97,7 +101,6 @@ echo "===== Runninng rocblas : GEMM - Half Precision =====" 2>&1 | tee $NUMPATH/
 
 
 echo "===== Runninng rocblas : GEMV - Single Precision =====" 2>&1 | tee $NUMPATH/rocblas_GEMV_single.log
-/opt/rocm/bin/rocm-smi --setperflevel high
 ./rocblas-bench -f gemv -r s -m 1000 -n 1000 --lda 1000 --transposeA T 2>&1 | tee -a $NUMPATH/rocblas_GEMV_single.log
 ./rocblas-bench -f gemv -r s -m 1000 -n 1000 --lda 1000 --transposeA N 2>&1 | tee -a $NUMPATH/rocblas_GEMV_single.log
 ./rocblas-bench -f gemv -r s -m 1000 -n 1000 --lda 1000 --transposeA T 2>&1 | tee -a $NUMPATH/rocblas_GEMV_single.log
@@ -113,7 +116,6 @@ echo "===== Runninng rocblas : GEMV - Single Precision =====" 2>&1 | tee $NUMPAT
 
 
 echo "===== Runninng rocblas : GEMV - Double Precision =====" 2>&1 | tee $NUMPATH/rocblas_GEMV_double.log
-/opt/rocm/bin/rocm-smi --setperflevel high
 ./rocblas-bench -f gemv -r d -m 1000 -n 1000 --lda 1000 --transposeA T 2>&1 | tee -a $NUMPATH/rocblas_GEMV_double.log
 ./rocblas-bench -f gemv -r d -m 1000 -n 1000 --lda 1000 --transposeA N 2>&1 | tee -a $NUMPATH/rocblas_GEMV_double.log
 ./rocblas-bench -f gemv -r d -m 1000 -n 1000 --lda 1000 --transposeA T 2>&1 | tee -a $NUMPATH/rocblas_GEMV_double.log
@@ -129,7 +131,6 @@ echo "===== Runninng rocblas : GEMV - Double Precision =====" 2>&1 | tee $NUMPAT
 
 
 echo "===== Runninng rocblas : GER - Single Precision =====" 2>&1 | tee $NUMPATH/rocblas_GER_single.log
-/opt/rocm/bin/rocm-smi --setperflevel high
 ./rocblas-bench -f ger -r s -m 1000 -n 1000 --lda 1000 2>&1 | tee -a $NUMPATH/rocblas_GER_single.log
 ./rocblas-bench -f ger -r s -m 10001 -n 10001 --lda 10002 2>&1 | tee -a $NUMPATH/rocblas_GER_single.log
 ./rocblas-bench -f ger -r s -m 1000 -n 1000 --lda 1000 2>&1 | tee -a $NUMPATH/rocblas_GER_single.log
@@ -139,7 +140,6 @@ echo "===== Runninng rocblas : GER - Single Precision =====" 2>&1 | tee $NUMPATH
 
 
 echo "===== Runninng rocblas : GER - Double Precision =====" 2>&1 | tee $NUMPATH/rocblas_GER_double.log
-/opt/rocm/bin/rocm-smi --setperflevel high
 ./rocblas-bench -f ger -r d -m 1000 -n 1000 --lda 1000 2>&1 | tee -a $NUMPATH/rocblas_GER_double.log
 ./rocblas-bench -f ger -r d -m 10001 -n 10001 --lda 10002 2>&1 | tee -a $NUMPATH/rocblas_GER_double.log
 ./rocblas-bench -f ger -r d -m 1000 -n 1000 --lda 1000 2>&1 | tee -a $NUMPATH/rocblas_GER_double.log
@@ -149,14 +149,12 @@ echo "===== Runninng rocblas : GER - Double Precision =====" 2>&1 | tee $NUMPATH
 
 
 echo "===== Runninng rocblas : DOT - Single Precision =====" 2>&1 | tee $NUMPATH/rocblas_DOT_single.log
-/opt/rocm/bin/rocm-smi --setperflevel high
 ./rocblas-bench -f dot -r s -n 1000 2>&1 | tee -a $NUMPATH/rocblas_DOT_single.log
 ./rocblas-bench -f dot -r s -n 100001 2>&1 | tee -a $NUMPATH/rocblas_DOT_single.log
 ./rocblas-bench -f dot -r s -n 10000002 2>&1 | tee -a $NUMPATH/rocblas_DOT_single.log
 
 
 echo "===== Runninng rocblas : DOT - Double Precision =====" 2>&1 | tee $NUMPATH/rocblas_DOT_double.log
-/opt/rocm/bin/rocm-smi --setperflevel high
 ./rocblas-bench -f dot -r d -n 1000 2>&1 | tee -a $NUMPATH/rocblas_DOT_double.log
 ./rocblas-bench -f dot -r d -n 100001 2>&1 | tee -a $NUMPATH/rocblas_DOT_double.log
 ./rocblas-bench -f dot -r d -n 10000002 2>&1 | tee -a $NUMPATH/rocblas_DOT_double.log
