@@ -31,10 +31,10 @@ mkdir -p /install && cd ~/tensorflow && cp tensorflow/tools/ci_build/install/*.s
 sh /install/install_bootstrap_deb_packages.sh
 add-apt-repository -y ppa:openjdk-r/ppa 
 #add-apt-repository -y ppa:george-edison55/cmake-3.x
-sh /install/install_deb_packages.sh
-pip uninstall setuptools -y
-pip install setuptools==20.7.0
-pip install --upgrade pip
+#sh /install/install_deb_packages.sh
+pip3 uninstall setuptools -y
+pip3 install setuptools==20.7.0
+pip3 install --upgrade pip
 pip3 install numpy
 sh /install/install_pip_packages.sh
 #sh /install/install_golang.sh
