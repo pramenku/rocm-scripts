@@ -1,7 +1,7 @@
 #!/bin/bash
 # run_soumith_benchmarks is not applicable for TF1.8 and higher. refer https://github.com/soumith/convnet-benchmarks/issues/138
 #This script is based on python3 . When TF was build with python3, use python3 . When TF was built with python2, replace python3 to python2
-export HIP_VISIBLE_DEVICES=0,1
+export HIP_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
 #export HSA_ENABLE_SDMA=0
 
 cwd=`pwd`
