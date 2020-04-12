@@ -41,9 +41,9 @@ sh /install/install_deb_packages.sh
 
 pip3 uninstall setuptools -y
 pip3 install setuptools==20.7.0
-
 #pip install --upgrade pip
 pip3 install numpy
+pip3 install portpicker
 
 sh /install/install_pip_packages.sh
 
