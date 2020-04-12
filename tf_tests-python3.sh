@@ -234,8 +234,8 @@ run_flower_alexnet()
 
 }
 
-download_tensorflow_models
-download_tensorflow_benchmarks
+#download_tensorflow_models
+#download_tensorflow_benchmarks
 
 run_convolutional_quick_test
 run_tutorials_image_mnist
