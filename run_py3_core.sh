@@ -53,8 +53,11 @@ sh /install/install_pip_packages.sh
 N_JOBS=$(grep -c ^processor /proc/cpuinfo)
 N_GPUS=$(lspci|grep 'controller'|grep 'AMD/ATI'|wc -l)
 
+echo $N_GPUS
+
 echo ""
 echo "Bazel will use ${N_JOBS} concurrent build job(s) and ${N_GPUS} concurrent test job(s)."
 echo ""
+
 
 cd ~/tensorflow && bazel clean --expunge && bash tensorflow/tools/ci_build/linux/rocm/run_py3_core.sh |& tee tensorflow-ut-logs.txt
