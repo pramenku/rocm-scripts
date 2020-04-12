@@ -18,45 +18,26 @@
 set -e
 set -x
 #install_bootstrap_deb_packages.sh
-apt-get update
+apt-get -y update
 apt-get install -y --no-install-recommends pciutils \
     apt-transport-https ca-certificates software-properties-common
 apt-get clean
 rm -rf /var/lib/apt/lists/*
 
 #install_pip_packages.sh
-#pip3 install --upgrade pip==18.1
-pip3 install wheel==0.31.1
-pip3 install --upgrade setuptools==39.1.0
-pip3 install virtualenv
-pip3 install --upgrade six==1.12.0
-pip3 install future>=0.17.1
-pip3 install --upgrade absl-py
-pip3 install --upgrade werkzeug==0.11.10
-pip3 install --upgrade bleach==2.0.0
-pip3 install --upgrade markdown==2.6.8
-pip3 install --upgrade protobuf==3.6.1
-rm -rf /usr/lib/python3/dist-packages/six*
-pip3 install --upgrade numpy==1.14.5
-pip3 install --upgrade scipy==1.1.0
-pip3 install scikit-learn==0.18.1
-pip3 install pandas==0.19.2
-pip3 install psutil
-pip3 install py-cpuinfo
-pip3 install pylint==1.6.4
-pip3 install pycodestyle portpicker grpcio 
-pip3 install --upgrade astor
-pip3 install --upgrade gast
-pip3 install --upgrade termcolor
-pip3 install keras_applications==1.0.6 --no-deps
-pip3 install keras_preprocessing==1.0.5 --no-deps
-pip3 install --upgrade h5py==2.8.0
-pip3 install tf-estimator-nightly==1.14.0.dev2019061801 --no-deps
-pip3 install --upgrade argparse
-#install_golang.sh
-GOLANG_URL="https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz"
-sudo mkdir -p /usr/local
-wget -q -O - "${GOLANG_URL}" | sudo tar -C /usr/local -xz
+apt-get install pciutils -y
+apt autoremove -y python-numpy python3-numpy
+mkdir -p /install && cd ~/tensorflow && cp tensorflow/tools/ci_build/install/*.sh /install/
+sh /install/install_bootstrap_deb_packages.sh
+add-apt-repository -y ppa:openjdk-r/ppa && add-apt-repository -y ppa:george-edison55/cmake-3.x
+sh /install/install_deb_packages.sh
+pip uninstall setuptools -y
+pip install setuptools==20.7.0
+pip install --upgrade pip
+pip3 install numpy
+sh /install/install_pip_packages.sh
+#sh /install/install_golang.sh
+
 
 N_JOBS=$(grep -c ^processor /proc/cpuinfo)
 N_GPUS=$(lspci|grep 'controller'|grep 'AMD/ATI'|wc -l)
@@ -65,20 +46,4 @@ echo ""
 echo "Bazel will use ${N_JOBS} concurrent build job(s) and ${N_GPUS} concurrent test job(s)."
 echo ""
 
-# Run configure.
-export PYTHON_BIN_PATH=`which python3`
-export CC_OPT_FLAGS='-mavx'
-
-export TF_NEED_ROCM=1
-export TF_GPU_COUNT=${N_GPUS}
-export HIP_HIDDEN_FREE_MEM=320
-
-#yes "" | $PYTHON_BIN_PATH configure.py
-
-# Run bazel test command. Double test timeouts to avoid flakes.
-bazel test --config=rocm --test_tag_filters=-no_oss,-oss_serial,-no_gpu,-no_rocm,-benchmark-test -k \
-    --test_lang_filters=py --jobs=${N_JOBS} --test_timeout 600,900,2400,7200 \
-    --build_tests_only --test_output=errors --local_test_jobs=${TF_GPU_COUNT} --config=opt \
-    --test_sharding_strategy=disabled \
-    --run_under=//tensorflow/tools/ci_build/gpu_build:parallel_gpu_execute -- \
-    //tensorflow/... -//tensorflow/compiler/... -//tensorflow/contrib/... \
+cd ~/tensorflow && bazel clean --expunge && bash tensorflow/tools/ci_build/linux/rocm/run_py3_core.sh |& tee tensorflow-ut-logs.txt
