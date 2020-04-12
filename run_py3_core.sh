@@ -15,28 +15,40 @@
 #
 # ==============================================================================
 
-set -e
+#!/bin/bash
+
 set -x
 #install_bootstrap_deb_packages.sh
-apt-get -y update
+apt-get update
 apt-get install -y --no-install-recommends pciutils \
     apt-transport-https ca-certificates software-properties-common
 apt-get clean
 rm -rf /var/lib/apt/lists/*
 
-#install_pip_packages.sh
+apt update
+
 apt-get install pciutils -y
+
 apt autoremove -y python-numpy python3-numpy
+
 mkdir -p /install && cd ~/tensorflow && cp tensorflow/tools/ci_build/install/*.sh /install/
+
 sh /install/install_bootstrap_deb_packages.sh
-add-apt-repository -y ppa:openjdk-r/ppa 
-#add-apt-repository -y ppa:george-edison55/cmake-3.x
-#sh /install/install_deb_packages.sh
-pip3 uninstall setuptools -y
-pip3 install setuptools==20.7.0
-pip3 install --upgrade pip
+
+add-apt-repository -y ppa:openjdk-r/ppa &&     add-apt-repository -y ppa:george-edison55/cmake-3.x
+
+sh /install/install_deb_packages.sh
+
+pip uninstall setuptools -y
+
+pip install setuptools==20.7.0
+
+pip install --upgrade pip
+
 pip3 install numpy
+
 sh /install/install_pip_packages.sh
+
 #sh /install/install_golang.sh
 
 
