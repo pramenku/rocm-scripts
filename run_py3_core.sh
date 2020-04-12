@@ -29,7 +29,8 @@ apt-get install pciutils -y
 apt autoremove -y python-numpy python3-numpy
 mkdir -p /install && cd ~/tensorflow && cp tensorflow/tools/ci_build/install/*.sh /install/
 sh /install/install_bootstrap_deb_packages.sh
-add-apt-repository -y ppa:openjdk-r/ppa && add-apt-repository -y ppa:george-edison55/cmake-3.x
+add-apt-repository -y ppa:openjdk-r/ppa 
+#add-apt-repository -y ppa:george-edison55/cmake-3.x
 sh /install/install_deb_packages.sh
 pip uninstall setuptools -y
 pip install setuptools==20.7.0
