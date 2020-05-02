@@ -16,12 +16,10 @@
 # ==============================================================================
 
 #!/bin/bash
-
 set -x
-#install_bootstrap_deb_packages.sh
 apt-get update
 apt-get install -y --no-install-recommends pciutils \
-    apt-transport-https ca-certificates software-properties-common
+    apt-transport-https ca-certificates software-properties-common python-pip
 apt-get clean
 rm -rf /var/lib/apt/lists/*
 
@@ -29,25 +27,25 @@ apt update
 
 apt-get install pciutils -y
 
-apt autoremove -y python-numpy python3-numpy
+apt autoremove -y python-numpy python3-numpy 
 
 mkdir -p /install && cd ~/tensorflow && cp tensorflow/tools/ci_build/install/*.sh /install/
 
 sh /install/install_bootstrap_deb_packages.sh
 
-add-apt-repository -y ppa:openjdk-r/ppa &&     add-apt-repository -y ppa:george-edison55/cmake-3.x
+add-apt-repository -y ppa:openjdk-r/ppa  
 
 sh /install/install_deb_packages.sh
 
-pip3 uninstall setuptools -y
-pip3 install setuptools==20.7.0
-#pip install --upgrade pip
+pip uninstall setuptools -y 
+
+pip install setuptools==39.1.0
+
+pip install --upgrade pip
+
 pip3 install numpy
-pip3 install portpicker
 
 sh /install/install_pip_packages.sh
-
-#sh /install/install_golang.sh
 
 
 N_JOBS=$(grep -c ^processor /proc/cpuinfo)
