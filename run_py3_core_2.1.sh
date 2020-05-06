@@ -34,8 +34,6 @@ echo ""
 echo "Bazel will use ${N_JOBS} concurrent build job(s) and ${N_GPUS} concurrent test job(s)."
 echo ""
 
-bazel clean --expunge
-
 # Run configure.
 export PYTHON_BIN_PATH=`which python3`
 export CC_OPT_FLAGS='-mavx'
