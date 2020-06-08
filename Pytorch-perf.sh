@@ -13,8 +13,8 @@ git clone https://github.com/pytorch/vision
 cd vision
 pip install --user .
 
-N_GPUS=$(lspci|grep 'controller'|grep 'AMD/ATI'|wc -l)
-echo $N_GPUS
+num_gpus=$(lspci|grep 'controller'|grep 'AMD/ATI'|wc -l)
+echo $num_gpus
 
 ###############################Below are applicable BS for 32GB Memory GPUs, for 16GB, change BS-of-32GB/2 ######################
 
