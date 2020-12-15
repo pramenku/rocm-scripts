@@ -2,12 +2,13 @@
 current=`pwd`
 cwd=$current
 dir1=$current
-rm -rf $dir1/HIP
+rm -rf $dir1/HIP 
+mkdir $dir1/HIP
 dir=$dir1/HIP
 cd $dir1
-export LD_LIBRARY_PATH=/opt/rocm/lib:$LD_LIBRARY_PATH
 
-git clone https://github.com/ROCm-Developer-Tools/HIP && cd HIP
+#make sure HIP Samples is copied from /opt/rocm/hip/samples
+cp -rf /opt/rocm/hip/samples $dir/ && cd $dir
 git clone https://github.com/ROCm-Developer-Tools/HIP-Examples && cd HIP-Examples && git submodule init && git submodule update
 
 echo "======================Samples==============================" 2>&1 | tee $cwd/hip-samples.log
@@ -17,15 +18,15 @@ cd $dir/samples/0_Intro/bit_extract
 make clean
 make
 ./bit_extract 2>&1 | tee $cwd/hip-samples.log
-echo "======================hcc_dialects==============================" 2>&1 | tee -a $cwd/hip-samples.log
-cd $dir/samples/0_Intro/hcc_dialects
-make clean
-make
-./vadd_amp_arrayview 2>&1 | tee -a $cwd/hip-samples.log
-./vadd_hc_am 2>&1 | tee -a $cwd/hip-samples.log
-./vadd_hc_array 2>&1 | tee -a $cwd/hip-samples.log
-./vadd_hc_arrayview  2>&1 | tee -a $cwd/hip-samples.log
-./vadd_hip 2>&1 | tee -a $cwd/hip-samples.log
+#echo "======================hcc_dialects==============================" 2>&1 | tee -a $cwd/hip-samples.log
+#cd $dir/samples/0_Intro/hcc_dialects
+#make clean
+#make
+#./vadd_amp_arrayview 2>&1 | tee -a $cwd/hip-samples.log
+#./vadd_hc_am 2>&1 | tee -a $cwd/hip-samples.log
+#./vadd_hc_array 2>&1 | tee -a $cwd/hip-samples.log
+#./vadd_hc_arrayview  2>&1 | tee -a $cwd/hip-samples.log
+#./vadd_hip 2>&1 | tee -a $cwd/hip-samples.log
 echo "======================module_api==============================" 2>&1 | tee -a $cwd/hip-samples.log
 cd $dir/samples/0_Intro/module_api
 make clean
@@ -197,6 +198,14 @@ echo "======================vectorAdd==============================" 2>&1 | tee 
 cd $dir/HIP-Examples/vectorAdd
 make clean
 make 2>&1 | tee -a $cwd/hip-examples.log
+echo "======================openmp-helloworld==============================" 2>&1 | tee -a $cwd/hip-examples.log
+cd $dir/HIP-Examples/openmp-helloworld
+rm -rf build
+mkdir build && cd build
+cmake .. 2>&1 | tee -a $cwd/hip-examples.log
+make 2>&1 | tee -a $cwd/hip-examples.log
+./test_openmp_helloworld 2>&1 | tee -a $cwd/hip-examples.log
+
 echo "======================Applications==============================" 2>&1 | tee -a $cwd/hip-examples.log
 cd $dir/HIP-Examples/HIP-Examples-Applications
 cd BinomialOption
@@ -248,9 +257,9 @@ make clean
 make
 ./RecursiveGaussian -e 2>&1 | tee -a $cwd/hip-examples-Applications.log
 
-cd $dir
-rm -rf build && mkdir build && cd build
-cmake .. -DCMAKE_INSTALL_PREFIX=../install  2>&1 | tee  $cwd/hip_directedtests_build.log
-make -j$(nproc)  2>&1 | tee -a $cwd/hip_directedtests_build.log
-make install  2>&1 | tee -a $cwd/hip_directedtests_build.log
-make check -j$(nproc) -e 2>&1 | tee $cwd/hip_directedtests.log
+#cd $dir
+#rm -rf build && mkdir build && cd build
+#cmake .. -DCMAKE_INSTALL_PREFIX=../install  2>&1 | tee  $cwd/hip_directedtests_build.log
+#make -j$(nproc)  2>&1 | tee -a $cwd/hip_directedtests_build.log
+#make install  2>&1 | tee -a $cwd/hip_directedtests_build.log
+#make check -j$(nproc) -e 2>&1 | tee $cwd/hip_directedtests.log
