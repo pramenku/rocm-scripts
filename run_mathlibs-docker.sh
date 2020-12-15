@@ -12,6 +12,8 @@ ctest --output-on-failure 2>&1 | tee $logs/rocrand-ut.log
 ./benchmark/benchmark_rocrand_generate --engine all --dis all 2>&1 | tee $logs/bm_rocrand_generate.log
 
 cd $dir
+echo "==============================rccl============================="
+./rccl/install.sh -dtr 2>&1 | tee $logs/rccl.log
 echo "==============================rocfft============================="
 ./rocFFT/build/release/clients/staging/rocfft-test 2>&1 | tee $logs/rocfft.log
 echo "==============================rocsolver============================="
