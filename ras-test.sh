@@ -87,7 +87,7 @@ dmesg  2>&1 | tee dmesg-wafl-multi.log
 
 echo "=============Inject UMC MULTI_UNCORRECTABLE error (P1)============="  2>&1 | tee umc-multi.log
 sudo dmesg -C
-#echo 1 > /sys/kernel/debug/dri/x/ras/ras_eeprom_reset
+#echo 1 > /sys/kernel/debug/dri/x/ras/ras_eeprom_reset ; do this mandatory after running this parituclar test. "x" value will come from amdvbflash output
 sudo amdgpuras -d $1 -b 0 2>&1 | tee -a umc-multi.log
 sudo amdgpuras -d $1 -b 0 -s 0 -t 4 -S 20 2>&1 | tee -a umc-multi.log
 sudo amdgpuras -d $1 -b 0 2>&1 | tee -a umc-multi.log
@@ -100,7 +100,7 @@ dmesg  2>&1 | tee dmesg-umc-multi.log
 
 echo "=============Inject UMC SINGLE_CORRECTABLE error (P3)============="  2>&1 | tee umc-single.log
 sudo dmesg -C
-#echo 1 > /sys/kernel/debug/dri/x/ras/ras_eeprom_reset
+#echo 1 > /sys/kernel/debug/dri/x/ras/ras_eeprom_reset ; do this mandatory after running this parituclar test.
 sudo amdgpuras -d $1 -b 0 2>&1 | tee -a umc-single.log
 sudo amdgpuras -d $1 -b 0 -s 0 -t 2 2>&1 | tee -a umc-single.log
 sudo amdgpuras -d $1 -b 0 2>&1 | tee -a umc-single.log
