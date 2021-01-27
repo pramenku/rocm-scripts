@@ -33,17 +33,17 @@ fi
 
 if (( $num_gpus == 2 )); then
 python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 512 --iterations 10 --dataparallel --device_ids 0,1
-python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 256 --iterations 10  --dataparallel --device_ids 0,1
+#python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 256 --iterations 10  --dataparallel --device_ids 0,1
 python3.6 micro_benchmarking_pytorch.py --network resnext101 --batch-size 64  --iterations 10 --dataparallel --device_ids 0,1
 
 python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 512 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1
-python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 256 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1
+#python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 256 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1
 python3.6 micro_benchmarking_pytorch.py --network resnext101 --batch-size 64  --iterations 10 --fp16 1 --dataparallel --device_ids 0,1
 fi
 
 if (( $num_gpus == 4 )); then
 python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 1024 --iterations 10 --dataparallel --device_ids 0,1,2,3
-python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 512 --iterations 10  --dataparallel --device_ids 0,1,2,3
+#python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 512 --iterations 10  --dataparallel --device_ids 0,1,2,3
 #python3.6 micro_benchmarking_pytorch.py --network resnet152 --batch-size 512 --iterations 10 --dataparallel --device_ids 0,1,2,3
 #python3.6 micro_benchmarking_pytorch.py --network alexnet --batch-size 4096 --iterations 10 --dataparallel --device_ids 0,1,2,3
 #python3.6 micro_benchmarking_pytorch.py --network SqueezeNet --batch-size 512 --iterations 10 --dataparallel --device_ids 0,1,2,3
@@ -54,7 +54,7 @@ python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 512 --i
 python3.6 micro_benchmarking_pytorch.py --network resnext101 --batch-size 128  --iterations 10 --dataparallel --device_ids 0,1,2,3
 
 python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 1024 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3
-python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 512 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3
+#python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 512 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3
 #python3.6 micro_benchmarking_pytorch.py --network resnet152 --batch-size 512 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3
 #python3.6 micro_benchmarking_pytorch.py --network alexnet --batch-size 4096 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3
 #python3.6 micro_benchmarking_pytorch.py --network SqueezeNet --batch-size 512 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3
@@ -67,7 +67,7 @@ fi
 
 if (( $num_gpus == 8 )); then
 python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 1024 --iterations 10  --dataparallel --device_ids 0,1,2,3,4,5,6,7
-python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 512 --iterations 10 --dataparallel --device_ids 0,1,2,3,4,5,6,7
+#python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 512 --iterations 10 --dataparallel --device_ids 0,1,2,3,4,5,6,7
 #python3.6 micro_benchmarking_pytorch.py --network resnet152 --batch-size 512 --iterations 10 --dataparallel --device_ids 0,1,2,3,4,5,6,7
 #python3.6 micro_benchmarking_pytorch.py --network alexnet --batch-size 4096 --iterations 10 --dataparallel --device_ids 0,1,2,3,4,5,6,7
 #python3.6 micro_benchmarking_pytorch.py --network SqueezeNet --batch-size 512 --iterations 10 --dataparallel --device_ids 0,1,2,3,4,5,6,7
@@ -78,7 +78,7 @@ python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 512 --i
 python3.6 micro_benchmarking_pytorch.py --network resnext101 --batch-size 128  --iterations 10 --dataparallel --device_ids 0,1,2,3,4,5,6,7
 
 python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 1024 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3,4,5,6,7
-python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 512 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3,4,5,6,7
+#python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 512 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3,4,5,6,7
 #python3.6 micro_benchmarking_pytorch.py --network resnet152 --batch-size 512 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3,4,5,6,7
 #python3.6 micro_benchmarking_pytorch.py --network alexnet --batch-size 4096 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3,4,5,6,7
 #python3.6 micro_benchmarking_pytorch.py --network SqueezeNet --batch-size 512 --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3,4,5,6,7
