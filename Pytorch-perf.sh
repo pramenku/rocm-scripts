@@ -8,9 +8,9 @@ wget https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/shuffle
 chmod 775 micro_benchmarking_pytorch.py fp16util.py shufflenet.py shufflenet_v2.py 
 
 
-#git clone https://github.com/pytorch/vision
-#cd vision && git reset --hard c2e8a0
-#pip install --user .
+git clone https://github.com/pytorch/vision
+cd vision && git reset --hard e70c91
+pip install --user .
 
 num_gpus=$(lspci|grep 'controller'|grep 'AMD/ATI'|wc -l)
 echo $num_gpus
