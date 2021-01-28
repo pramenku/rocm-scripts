@@ -20,7 +20,7 @@ echo $num_gpus
 
 #mGPU (for 4 GPU ):
 #Batch size depends on number of GPU, (For example : for 128 batchsize, it will be 128*4=512)
-
+cd /root/
 if (( $num_gpus == 1 )); then
 python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 256 --iterations 10 --dataparallel --device_ids 0
 #python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 128 --iterations 10  --dataparallel --device_ids 0
