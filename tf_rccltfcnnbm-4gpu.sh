@@ -51,7 +51,7 @@ run_tf_cnn_benchmarks_128()
         cd $BENCHDIR
     export TF_ROCM_FUSION_ENABLE=1
     #MODELS="alexnet googlenet inception3 lenet overfeat resnet50 trivial vgg11 vgg16 vgg19"
-    MODELS="resnet50 vgg19"
+    MODELS="resnet50 vgg19 resnet50_v1.5"
         NGPUS=$num_gpus
         ITERATIONS=100
         BATCH_SIZE=128
@@ -141,7 +141,7 @@ run_tf_cnn_benchmarks_1024()
 
 #run_tf_cnn_benchmarks
 run_tf_cnn_benchmarks_128
-run_tf_cnn_benchmarks_256
+#run_tf_cnn_benchmarks_256
 #run_tf_cnn_benchmarks_512
 #run_tf_cnn_benchmarks_1024
 
