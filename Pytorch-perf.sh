@@ -89,4 +89,6 @@ python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 1024 --i
 python3.6 micro_benchmarking_pytorch.py --network resnext101 --batch-size 128  --iterations 10 --fp16 1 --dataparallel --device_ids 0,1,2,3,4,5,6,7 2>&1 | tee -a py-bms.log
 fi
 
-grep -nir "summary" py-bms.log
+grep -nir "Microbenchmark" py-bms.log
+grep -nir "Throughput" py-bms.log
+
