@@ -144,5 +144,5 @@ run_tf_cnn_benchmarks_128
 #run_tf_cnn_benchmarks_256
 #run_tf_cnn_benchmarks_512
 #run_tf_cnn_benchmarks_1024
-grep -nir "total images/sec" *.txt
+grep -nir "total images/sec" $LOGDIR/tfrccl*.txt
 
