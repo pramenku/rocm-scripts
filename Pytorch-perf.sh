@@ -9,7 +9,7 @@ chmod 775 micro_benchmarking_pytorch.py fp16util.py shufflenet.py shufflenet_v2.
 
 
 git clone https://github.com/pytorch/vision
-cd vision && git reset --hard e70c91
+cd vision && git reset --hard 8a2dc6
 pip install --user .
 
 num_gpus=$(lspci|grep 'controller'|grep 'AMD/ATI'|wc -l)
