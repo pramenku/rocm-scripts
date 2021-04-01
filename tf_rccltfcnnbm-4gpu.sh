@@ -138,11 +138,35 @@ run_tf_cnn_benchmarks_1024()
     done
 } 
 
+run_tf_cnn_benchmarks_fp16()
+{
+  cd $BENCHDIR
+  MODELS="resnet50 vgg19 resnet50_v1.5"
+  NGPUS=$num_gpus
+  f_only=False
+  ITERATIONS=100
+  BATCH_SIZE=128
+  display_every=10
+  
+  for j in ${BATCH_SIZE[@]}
+  do
+  for i in ${MODELS[@]}
+  do
+  #echo "Model:${model}_${bsz}_${f_only}_${num_gpus}"
+  /usr/bin/python3 scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py --num_gpus=${NGPUS} --batch_size=$j --model=$i --variable_update=parameter_server --local_parameter_device=cpu --forward_only=${f_only} --print_training_accuracy=True --num_batches=${ITERATIONS} --display_every=${display_every} --use_fp16=True 2>&1 | tee -a tfrccl-fp16-$i-$j.txt
+  cp -rf tf_cnn_benchmarks_FP16_log.txt $LOGDIR
+  #grep -E "total images/sec" $log_file
+  done
+  done
+}
+
 
 #run_tf_cnn_benchmarks
 run_tf_cnn_benchmarks_128
 #run_tf_cnn_benchmarks_256
 #run_tf_cnn_benchmarks_512
 #run_tf_cnn_benchmarks_1024
+run_tf_cnn_benchmarks_fp16
+
 grep -nir "total images/sec" $LOGDIR/tfrccl*.txt
 
