@@ -1,16 +1,17 @@
 #!/bin/bash
 cd /root/
-wget  https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/micro_benchmarking_pytorch.py
-wget  https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/fp16util.py 
-wget https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/shufflenet.py 
-wget https://raw.githubusercontent.com/wiki/ROCmSoftwarePlatform/pytorch/shufflenet_v2.py 
-
+git clone https://github.com/ROCmSoftwarePlatform/pytorch-micro-benchmarking && cd pytorch-micro-benchmarking
 chmod 775 micro_benchmarking_pytorch.py fp16util.py shufflenet.py shufflenet_v2.py 
 
 
-git clone https://github.com/pytorch/vision
-cd vision && git reset --hard 8a2dc6
-pip install --user .
+#git clone https://github.com/pytorch/vision
+#cd vision && git reset --hard 8a2dc6
+#pip install --user .
+
+cd /var/lib/jenkins/pytorch/.jenkins/pytorch
+VISION_COMMIT=$(grep -nri "TORCHVISION_COMMIT=" common_utils.sh | cut -d'=' -f2)
+echo "Vision commit = $VISION_COMMIT"
+pip3 install --user git+https://github.com/pytorch/vision.git@$VISION_COMMIT
 
 num_gpus=$(lspci|grep 'controller'|grep 'AMD/ATI'|wc -l)
 echo $num_gpus
@@ -20,7 +21,7 @@ echo $num_gpus
 
 #mGPU (for 4 GPU ):
 #Batch size depends on number of GPU, (For example : for 128 batchsize, it will be 128*4=512)
-cd /root/
+cd /root/pytorch-micro-benchmarking
 if (( $num_gpus == 1 )); then
 python3.6 micro_benchmarking_pytorch.py --network resnet50 --batch-size 256 --iterations 10 --dataparallel --device_ids 0 2>&1 | tee py-bms.log
 #python3.6 micro_benchmarking_pytorch.py --network resnet101 --batch-size 128 --iterations 10  --dataparallel --device_ids 0 2>&1 | tee -a py-bms.log
